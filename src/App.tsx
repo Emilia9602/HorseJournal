@@ -1,8 +1,8 @@
+import JournalForm from "./components/JournalForm";
+
 function App() {
   return (
-    <div>
-      <h1>Start</h1>
-    </div>
+    <JournalForm />
   );
 }
 
