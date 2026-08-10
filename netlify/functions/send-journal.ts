@@ -1,35 +1,34 @@
 import { Handler } from "@netlify/functions";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const handler: Handler = async (event) => {
 
     const { journal, pdf } = JSON.parse(event.body || "{}");
 
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: "emiliaandreasson96@gmail.com",
-            pass: "DIN_APP_PASSWORD", //Kolla detta sen
-        }
-    })
+    //Avinstallera nodemailer?
+    //env osynlig?
 
     const base64Data = pdf.split("base64,")[1];
 
     try {
-        await transporter.sendMail({
-            from: "emiliaandreasson96@gmail.com",
+        await resend.emails.send({
+            from: "onboarding@resend.dev", //GoldieRanch?
             to: journal.owner.mail
                 ? [journal.owner.mail, "ellis-an@hotmail.com",]
                 : ["ellis-an@hotmail.com"],
 
             subject: `Journal ${journal.horse.name}`,
-            text: `
-            Hej!
+            html: `
+            <p>
+              Hej!
             
-            Här är journalen för ${journal.horse.name}.
-            Datum: ${journal.visitDate}
+              Här är journalen för ${journal.horse.name}.
+              Datum: ${journal.visitDate}
             
-            Se bifogad PDF.
+              Se bifogad PDF.
+            </p>
             
             `,
 
@@ -37,7 +36,6 @@ export const handler: Handler = async (event) => {
                 {
                     filename: "journal.pdf",
                     content: base64Data,
-                    encoding: "base64",
                 },
             ],
         });
