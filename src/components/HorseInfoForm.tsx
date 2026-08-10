@@ -40,7 +40,6 @@ function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormPr
                             <Form.Group className="mb-3">
                                 <Form.Label>Född</Form.Label>
                                 <Form.Control
-                                    type="date"
                                     name="birthDate"
                                     value={journal.horse.birthDate}
                                     onChange={(e) => updateField("horse", "birthDate", e.target.value)}
@@ -86,6 +85,16 @@ function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormPr
                         />
                     </Form.Group>
 
+                    <Form.Group className="mb-3">
+                        <Form.Label>Adress</Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            rows={2}
+                            name="address"
+                            value={journal.owner.address}
+                            onChange={(e) => updateField("owner", "address", e.target.value)}
+                        />
+                    </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Telefonnummer</Form.Label>
@@ -96,17 +105,15 @@ function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormPr
                         />
                     </Form.Group>
 
-
-                    <Form.Group>
-                        <Form.Label>Adress</Form.Label>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Mail</Form.Label>
                         <Form.Control
-                            as="textarea"
-                            rows={2}
-                            name="address"
-                            value={journal.owner.address}
-                            onChange={(e) => updateField("owner", "address", e.target.value)}
+                            name="mail"
+                            value={journal.owner.mail}
+                            onChange={(e) => updateField("owner", "mail", e.target.value)}
                         />
                     </Form.Group>
+
                 </Card.Body>
 
             </Card>
