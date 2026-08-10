@@ -109,6 +109,7 @@ function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormPr
                         <Form.Label>Mail</Form.Label>
                         <Form.Control
                             name="mail"
+                            required
                             value={journal.owner.mail}
                             onChange={(e) => updateField("owner", "mail", e.target.value)}
                         />

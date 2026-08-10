@@ -59,31 +59,52 @@ function JournalForm() {
         }));
     };
 
-    const generatePDF = () => {
+    const generatePDFBase64 = async (): Promise<string | null> => {
         const divPdf = document.getElementById("pdfJournal");
 
-        if (!divPdf) return;
+        if (!divPdf) return null;
 
-        html2pdf().from(divPdf).save("journal.pdf");
+        const opt = {
+            margin: 0.5,
+            filename: "journal.pdf",
+            image: { type: "jpeg" as const, quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "in", format: "a4", orientation: "portrait" as const },
+        };
+
+        const pdf = await html2pdf().set(opt).from(divPdf).outputPdf("blob");
+
+        return await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(pdf);
+            reader.onloadend = () => {
+                resolve(reader.result as string);
+            }
+        })
     };
 
-    const handleSubmit = async (e: React.SubmitEvent) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
+            const pdfBase64 = await generatePDFBase64();
+
             const res = await fetch("/.netlify/functions/send-journal", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(journal),
+                body: JSON.stringify({
+                    journal,
+                    pdf: pdfBase64,
+                }),
             });
 
             if (!res.ok) {
                 throw new Error("Kunde inte skicka journalen");
             }
 
-            alert("Journal skickad");
+            alert("Journal skickad med PDF");
         } catch (error) {
             console.error(error);
             alert("Något gick fel");
@@ -111,7 +132,7 @@ function JournalForm() {
 
                 <Button type="submit">Spara Journal</Button>
                 <Button variant="secondary"
-                    onClick={generatePDF}
+                    onClick={generatePDFBase64}
                     className="ms-2">
                     Ladda ner PDF
                 </Button>
