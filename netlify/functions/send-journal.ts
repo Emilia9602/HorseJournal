@@ -7,8 +7,12 @@ export const handler: Handler = async (event) => {
 
     const { journal, pdf } = JSON.parse(event.body || "{}");
 
-    //Avinstallera nodemailer?
-    //env osynlig?
+    if (!pdf) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: "Ingen PDF skickades med" }),
+        };
+    }
 
     const base64Data = pdf.split("base64,")[1];
 
@@ -16,20 +20,14 @@ export const handler: Handler = async (event) => {
         await resend.emails.send({
             from: "onboarding@resend.dev", //GoldieRanch?
             to: journal.owner.mail
-                ? [journal.owner.mail, "ellis-an@hotmail.com",]
-                : ["ellis-an@hotmail.com"],
+                ? [journal.owner.mail, "emiliaandreasson96@gmail.com",] //Ellans mail sen
+                : ["emiliaandreasson96@gmail.com"],
 
             subject: `Journal ${journal.horse.name}`,
             html: `
-            <p>
-              Hej!
-            
-              Här är journalen för ${journal.horse.name}.
-              Datum: ${journal.visitDate}
-            
-              Se bifogad PDF.
-            </p>
-            
+            <h2>Journal för ${journal.horse.name}.</h2> 
+            <p><strong>Datum:</strong> ${journal.visitDate}</p>
+            <p>Se bifogad PDF.</p>
             `,
 
             attachments: [

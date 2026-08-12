@@ -83,11 +83,34 @@ function JournalForm() {
         })
     };
 
+    const downloadPDF = () => {
+        const divPdf = document.getElementById("pdfJournal");
+
+        if (!divPdf) return null;
+
+        const opt = {
+            margin: 0.5,
+            filename: "journal.pdf",
+            image: { type: "jpeg" as const, quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "in", format: "a4", orientation: "portrait" as const },
+        };
+
+        html2pdf().set(opt).from(divPdf).save();
+    };
+
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        console.log("Submit körs");
+
         try {
             const pdfBase64 = await generatePDFBase64();
+
+            if (!pdfBase64) {
+                alert("Kunde inte skapa PDF");
+                return;
+            }
 
             const res = await fetch("/.netlify/functions/send-journal", {
                 method: "POST",
@@ -130,14 +153,15 @@ function JournalForm() {
                     journal={journal}
                     updateTextArea={updateTextArea} />
 
-                <Button type="submit">Spara Journal</Button>
+                <Button type="submit">Skicka Journal</Button>
+
                 <Button variant="secondary"
-                    onClick={generatePDFBase64}
+                    onClick={downloadPDF}
                     className="ms-2">
                     Ladda ner PDF
                 </Button>
 
-                <div className="hide">
+                <div id="pdfJournal" className="hide">
                     <JournalPDF journal={journal} />
                 </div>
 
