@@ -6,7 +6,7 @@ type JournalPDFProps = {
 
 function JournalPDF({ journal }: JournalPDFProps) {
     return (
-        <div id="pdfJournal">
+        <div>
             <h1>Journal</h1>
 
             <h3>Häst</h3>
@@ -21,6 +21,7 @@ function JournalPDF({ journal }: JournalPDFProps) {
             <p><strong>Telefon:</strong> {journal.owner.phone}</p>
             <p><strong>Mail:</strong> {journal.owner.mail}</p>
 
+            <h3>Besök</h3>
             <p><strong>Datum:</strong> {journal.visitDate}</p>
 
             <h3>Anamnes</h3>

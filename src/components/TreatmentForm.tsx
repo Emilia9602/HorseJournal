@@ -1,10 +1,21 @@
 import { Card, Form } from "react-bootstrap";
-import type { Journal } from "../types/Journal.types"
+import type { Journal, TextArea } from "../types/Journal.types"
 
 type TreatmentFormProps = {
     journal: Journal;
-    updateTextArea: (area: string, value: string) => void;
+    updateTextArea: (area: TextArea, value: string) => void;
 }
+
+type AreaFields = {
+    key: TextArea;
+    label: string;
+    rows: number;
+};
+
+const areaFields: AreaFields[] = [
+    { key: "treatment", label: "Behandling", rows: 3 },
+    { key: "homeAdvice", label: "Hemgångsråd", rows: 4 },
+];
 
 function TreatmentForm({ journal, updateTextArea }: TreatmentFormProps) {
     return (
@@ -13,35 +24,19 @@ function TreatmentForm({ journal, updateTextArea }: TreatmentFormProps) {
             <Card.Header>Behandling</Card.Header>
 
             <Card.Body>
+                {areaFields.map(({ key, label, rows }) => (
+                    <Form.Group className="mb-3" key={key}>
+                        <Form.Label>{label}</Form.Label>
 
-                <Form.Group className="mb-3">
+                        <Form.Control
+                            as="textarea"
+                            rows={rows}
+                            value={journal[key]}
+                            onChange={(e) => updateTextArea(key, e.target.value)}
+                        />
 
-                    <Form.Label>Behandling</Form.Label>
-
-                    <Form.Control
-                        as="textarea"
-                        rows={3}
-                        name="treatment"
-                        value={journal.treatment}
-                        onChange={(e) => updateTextArea("treatment", e.target.value)}
-                    />
-
-                </Form.Group>
-
-                <Form.Group>
-
-                    <Form.Label>Hemgångsråd</Form.Label>
-
-                    <Form.Control
-                        as="textarea"
-                        rows={4}
-                        name="homeAdvice"
-                        value={journal.homeAdvice}
-                        onChange={(e) => updateTextArea("homeAdvice", e.target.value)}
-                    />
-
-                </Form.Group>
-
+                    </Form.Group>
+                ))}
             </Card.Body>
 
         </Card>

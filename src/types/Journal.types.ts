@@ -15,3 +15,7 @@ export type Journal = {
     treatment: string;
     homeAdvice: string;
 };
+
+export type TextArea = keyof Omit<Journal, "horse" | "owner" | "visitDate">;
+
+export type JournalSection = "horse" | "owner";

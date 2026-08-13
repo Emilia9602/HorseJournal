@@ -1,10 +1,17 @@
 import { Card, Form } from "react-bootstrap";
-import type { Journal } from "../types/Journal.types"
+import type { Journal, TextArea } from "../types/Journal.types"
 
 type ExaminationFormProps = {
     journal: Journal;
-    updateTextArea: (area: string, value: string) => void;
+    updateTextArea: (area: TextArea, value: string) => void;
 };
+
+const areaFields: { key: TextArea, label: string }[] = [
+    { key: "anamnes", label: "Anamnes" },
+    { key: "ocularInspection", label: "Ockulär besiktning" },
+    { key: "fosa", label: "FOSA" },
+    { key: "movementAnalysis", label: "Rörelseanalys" },
+];
 
 function ExaminationForm({ journal, updateTextArea }: ExaminationFormProps) {
     return (
@@ -13,62 +20,19 @@ function ExaminationForm({ journal, updateTextArea }: ExaminationFormProps) {
             <Card.Header>Undersökning</Card.Header>
 
             <Card.Body>
+                {areaFields.map(({ key, label }) => (
+                    <Form.Group className="mb-3" key={key}>
+                        <Form.Label>{label}</Form.Label>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Anamnes</Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            rows={4}
+                            value={journal[key]}
+                            onChange={(e) => updateTextArea(key, e.target.value)}
+                        />
 
-                    <Form.Control
-                        as="textarea"
-                        rows={4}
-                        name="anamnes"
-                        value={journal.anamnes}
-                        onChange={(e) => updateTextArea("anamnes", e.target.value)}
-                    />
-
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-
-                    <Form.Label>Ockulär besiktning</Form.Label>
-
-                    <Form.Control
-                        as="textarea"
-                        rows={4}
-                        name="ocularInspection"
-                        value={journal.ocularInspection}
-                        onChange={(e) => updateTextArea("ocularInspection", e.target.value)}
-                    />
-
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-
-                    <Form.Label>FOSA</Form.Label>
-
-                    <Form.Control
-                        as="textarea"
-                        rows={4}
-                        name="fosa"
-                        value={journal.fosa}
-                        onChange={(e) => updateTextArea("fosa", e.target.value)}
-                    />
-
-                </Form.Group>
-
-                <Form.Group>
-
-                    <Form.Label>Rörelseanalys</Form.Label>
-
-                    <Form.Control
-                        as="textarea"
-                        rows={4}
-                        name="movementAnalysis"
-                        value={journal.movementAnalysis}
-                        onChange={(e) => updateTextArea("movementAnalysis", e.target.value)}
-                    />
-
-                </Form.Group>
-
+                    </Form.Group>
+                ))}
             </Card.Body>
 
         </Card>

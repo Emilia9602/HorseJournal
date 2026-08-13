@@ -1,13 +1,22 @@
 import { Card, Col, Form, Row } from "react-bootstrap";
-import type { Journal } from "../types/Journal.types"
+import type { Journal, JournalSection } from "../types/Journal.types"
 
 type HorseInfoFormProps = {
     journal: Journal;
-    updateField: (section: string, field: string, value: string) => void;
-    updateTextArea: (area: string, value: string) => void;
+
+    updateField: (
+        section: JournalSection,
+        field: keyof Journal["horse"] | keyof Journal["owner"],
+        value: string
+    ) => void;
+
+    updateDate: (
+        field: "visitDate",
+        value: string,
+    ) => void;
 };
 
-function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormProps) {
+function HorseInfoForm({ journal, updateField, updateDate }: HorseInfoFormProps) {
     return (
         <>
             <Card className="mb-4">
@@ -99,6 +108,7 @@ function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormPr
                     <Form.Group className="mb-3">
                         <Form.Label>Telefonnummer</Form.Label>
                         <Form.Control
+                            type="tel"
                             name="phone"
                             value={journal.owner.phone}
                             onChange={(e) => updateField("owner", "phone", e.target.value)}
@@ -108,6 +118,7 @@ function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormPr
                     <Form.Group className="mb-3">
                         <Form.Label>Mail</Form.Label>
                         <Form.Control
+                            type="email"
                             name="mail"
                             required
                             value={journal.owner.mail}
@@ -133,7 +144,7 @@ function HorseInfoForm({ journal, updateField, updateTextArea }: HorseInfoFormPr
                             type="date"
                             name="visitDate"
                             value={journal.visitDate}
-                            onChange={(e) => updateTextArea("visitDate", e.target.value)}
+                            onChange={(e) => updateDate("visitDate", e.target.value)}
                         />
 
                     </Form.Group>
