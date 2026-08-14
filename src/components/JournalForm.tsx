@@ -1,50 +1,61 @@
+import { useState } from "react";
+import type { Journal } from "../types/Journal.types";
 import { Button, Container, Form } from "react-bootstrap";
 import HorseInfoForm from "./HorseInfoForm";
 import ExaminationForm from "./ExaminationForm";
 import TreatmentForm from "./TreatmentForm";
-import JournalPDF from "./JournalPDF";
-import useJournal from "../hooks/useJournal";
-import usePDF from "../hooks/usePDF";
 
-//Lägg in snyggare än alerts
-//LocalStorage? Ej ladda om ifall man går ut, så att det sparas
-//Nödvändigt med både spara PDF och skicka PDF?
-//Städa till sist
+type Section = "horse" | "owner";
 
 function JournalForm() {
 
-    const { journal, updateField, updateDate, updateTextArea } = useJournal();
-    const { generatePDFBase64, downloadPDF } = usePDF();
+    const [journal, setJournal] = useState<Journal>({
+        horse: {
+            name: "",
+            birthDate: "",
+            gender: "",
+            breed: "",
+        },
 
-    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+        owner: {
+            name: "",
+            phone: "",
+            address: "",
+            mail: "",
+        },
+
+        visitDate: "",
+
+        anamnes: "",
+        ocularInspection: "",
+        fosa: "",
+        movementAnalysis: "",
+
+        treatment: "",
+        homeAdvice: "",
+    });
+
+    const updateField = (section: Section, field: string, value: string) => {
+        setJournal((prev) => ({
+            ...prev,
+            [section]: {
+                ...prev[section],
+                [field]: value,
+            },
+        }));
+    };
+
+    const updateTextArea = (area: string, value: string) => {
+        setJournal((prev) => ({
+            ...prev,
+            [area]: value,
+        }));
+    };
+
+    const handleSubmit = (e: React.SubmitEvent) => {
         e.preventDefault();
 
-        try {
-            const pdfBase64 = await generatePDFBase64();
-
-            if (!pdfBase64) {
-                alert("Kunde inte skapa PDF");
-                return;
-            }
-
-            const res = await fetch("/.netlify/functions/send-journal", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    journal,
-                    pdf: pdfBase64,
-                }),
-            });
-
-            if (!res.ok) throw new Error("Kunde inte skicka journalen");
-
-            alert("Journal skickad med PDF");
-        } catch (error) {
-            console.error(error);
-            alert("Något gick fel");
-        }
+        console.log(journal);
     };
 
     return (
@@ -66,19 +77,7 @@ function JournalForm() {
                     journal={journal}
                     updateTextArea={updateTextArea} />
 
-                <Button type="submit" className="me-2">
-                    Skicka Journal
-                </Button>
-
-                <Button variant="secondary"
-                    onClick={downloadPDF}
-                    className="ms-2">
-                    Ladda ner PDF
-                </Button>
-
-                <div id="pdfJournal" className="hide">
-                    <JournalPDF journal={journal} />
-                </div>
+                <Button type="submit">Spara Journal</Button>
 
             </Form>
         </Container>

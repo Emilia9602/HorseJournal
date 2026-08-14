@@ -18,6 +18,8 @@ const usePDF = () => {
 
         if (!divPdf) return null;
 
+        await new Promise((r) => setTimeout(r, 100));
+
         const pdf = await html2pdf().set(opt).from(divPdf).outputPdf("blob");
 
         return new Promise((resolve) => {
@@ -28,8 +30,11 @@ const usePDF = () => {
             }
 
             reader.readAsDataURL(pdf);
+
+            console.log(divPdf.innerHTML);
         });
     };
+
 
     const downloadPDF = (): void => {
         const divPdf = getDivPdf();
