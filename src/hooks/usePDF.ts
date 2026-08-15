@@ -28,6 +28,7 @@ const usePDF = () => {
             }
 
             reader.readAsDataURL(pdf);
+            console.log(divPdf.innerHTML);
         });
     };
 

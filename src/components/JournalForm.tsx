@@ -76,7 +76,7 @@ function JournalForm() {
                     Ladda ner PDF
                 </Button>
 
-                <div id="pdfJournal" className="hide">
+                <div id="pdfJournal">
                     <JournalPDF journal={journal} />
                 </div>
 
