@@ -76,11 +76,11 @@ function JournalForm() {
                     Ladda ner PDF
                 </Button>
 
-                <div id="pdfJournal">
-                    <JournalPDF journal={journal} />
-                </div>
-
             </Form>
+
+            <div className="pdfContainer">
+                <JournalPDF journal={journal} />
+            </div>
         </Container>
     )
 

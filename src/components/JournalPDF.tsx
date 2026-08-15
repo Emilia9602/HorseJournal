@@ -6,7 +6,7 @@ type JournalPDFProps = {
 
 function JournalPDF({ journal }: JournalPDFProps) {
     return (
-        <div>
+        <div id="pdfJournal">
             <h1>Journal</h1>
 
             <h3>Häst</h3>
