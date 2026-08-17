@@ -1,4 +1,4 @@
-import JournalForm from "./components/JournalForm";
+import JournalForm from "./components/forms/JournalForm";
 
 function App() {
   return (

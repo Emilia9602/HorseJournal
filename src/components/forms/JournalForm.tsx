@@ -2,13 +2,14 @@ import { Button, Container, Form } from "react-bootstrap";
 import HorseInfoForm from "./HorseInfoForm";
 import ExaminationForm from "./ExaminationForm";
 import TreatmentForm from "./TreatmentForm";
-import JournalPDF from "./JournalPDF";
-import useJournal from "../hooks/useJournal";
-import usePDF from "../hooks/usePDF";
+import JournalPDF from "../pdf/JournalPDF";
+import useJournal from "../../hooks/useJournal";
+import usePDF from "../../hooks/usePDF";
 
 //Lägg in snyggare än alerts
 //LocalStorage? Ej ladda om ifall man går ut, så att det sparas
 //Nödvändigt med både spara PDF och skicka PDF?
+//Sortera komponenter till mappar
 //Städa till sist
 
 function JournalForm() {

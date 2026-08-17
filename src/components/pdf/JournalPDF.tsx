@@ -1,4 +1,4 @@
-import type { Journal } from "../types/Journal.types"
+import type { Journal } from "../../types/Journal.types"
 
 type JournalPDFProps = {
     journal: Journal;

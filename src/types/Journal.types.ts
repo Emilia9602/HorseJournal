@@ -18,4 +18,10 @@ export type Journal = {
 
 export type TextArea = keyof Omit<Journal, "horse" | "owner" | "visitDate">;
 
+export type AreaField = {
+    key: TextArea;
+    label: string;
+    rows?: number;
+}
+
 export type JournalSection = "horse" | "owner";
