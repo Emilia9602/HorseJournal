@@ -2,11 +2,11 @@ import html2pdf from "html2pdf.js";
 
 const usePDF = () => {
     const opt = {
-        margin: 0.5,
+        margin: 5,
         filename: "journal.pdf",
         image: { type: "jpeg" as const, quality: 0.98 },
         html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "a4", orientation: "portrait" as const },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" as const },
     };
 
     const getDivPdf = (): HTMLElement | null => {

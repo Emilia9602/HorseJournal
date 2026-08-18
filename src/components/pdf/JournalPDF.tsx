@@ -4,25 +4,64 @@ type JournalPDFProps = {
     journal: Journal;
 };
 
+//Sida 1/2? Fixa?
+
 function JournalPDF({ journal }: JournalPDFProps) {
     return (
         <div id="pdfJournal">
+
             <h1>Journal</h1>
 
             <h3>Häst</h3>
-            <p><strong>Namn:</strong> {journal.horse.name}</p>
-            <p><strong>Född:</strong> {journal.horse.birthDate}</p>
-            <p><strong>Kön:</strong> {journal.horse.gender}</p>
-            <p><strong>Ras:</strong> {journal.horse.breed}</p>
+
+            <div className="pdfField">
+                <strong>Namn:</strong>
+                <span>{journal.horse.name}</span>
+            </div>
+
+            <div className="pdfField">
+                <strong>Född:</strong>
+                <span>{journal.horse.birthDate}</span>
+            </div>
+
+            <div className="pdfField">
+                <strong>Kön:</strong>
+                <span>{journal.horse.gender}</span>
+            </div>
+
+            <div className="pdfField">
+                <strong>Ras:</strong>
+                <span>{journal.horse.breed}</span>
+            </div>
 
             <h3>Ägare</h3>
-            <p><strong>Namn:</strong> {journal.owner.name}</p>
-            <p><strong>Adress:</strong> {journal.owner.address}</p>
-            <p><strong>Telefon:</strong> {journal.owner.phone}</p>
-            <p><strong>Mail:</strong> {journal.owner.mail}</p>
+
+            <div className="pdfField">
+                <strong>Namn:</strong>
+                <span>{journal.owner.name}</span>
+            </div>
+
+            <div className="pdfField">
+                <strong>Adress:</strong>
+                <span>{journal.owner.address}</span>
+            </div>
+
+            <div className="pdfField">
+                <strong>Telefon:</strong>
+                <span>{journal.owner.phone}</span>
+            </div>
+
+            <div className="pdfField">
+                <strong>Mail:</strong>
+                <span>{journal.owner.mail}</span>
+            </div>
 
             <h3>Besök</h3>
-            <p><strong>Datum:</strong> {journal.visitDate}</p>
+
+            <div className="pdfField">
+                <strong>Datum:</strong>
+                <span>{journal.visitDate}</span>
+            </div>
 
             <h3>Anamnes</h3>
             <p>{journal.anamnes}</p>
@@ -42,6 +81,7 @@ function JournalPDF({ journal }: JournalPDFProps) {
             <h3>Hemgångsråd</h3>
             <p>{journal.homeAdvice}</p>
         </div>
+
     );
 }
 
