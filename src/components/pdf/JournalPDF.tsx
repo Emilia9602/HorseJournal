@@ -1,4 +1,9 @@
 import type { Journal } from "../../types/Journal.types"
+import Footer from "./Footer";
+import Header from "./Header";
+import PageOne from "./PageOne";
+import PageThree from "./PageThree";
+import PageTwo from "./PageTwo";
 
 type JournalPDFProps = {
     journal: Journal;
@@ -10,76 +15,36 @@ function JournalPDF({ journal }: JournalPDFProps) {
     return (
         <div id="pdfJournal">
 
-            <h1>Journal</h1>
+            <div className="pdfPage">
+                <Header />
 
-            <h3>Häst</h3>
+                <div className="pdfBody">
+                    <PageOne journal={journal} />
+                </div>
 
-            <div className="pdfField">
-                <strong>Namn:</strong>
-                <span>{journal.horse.name}</span>
+                <Footer page={1} total={3} />
             </div>
 
-            <div className="pdfField">
-                <strong>Född:</strong>
-                <span>{journal.horse.birthDate}</span>
+            <div className="pdfPage">
+                <Header />
+
+                <div className="pdfBody">
+                    <PageTwo journal={journal} />
+                </div>
+
+                <Footer page={2} total={3} />
             </div>
 
-            <div className="pdfField">
-                <strong>Kön:</strong>
-                <span>{journal.horse.gender}</span>
+            <div className="pdfPage">
+                <Header />
+
+                <div className="pdfBody">
+                    <PageThree journal={journal} />
+                </div>
+
+                <Footer page={3} total={3} />
             </div>
 
-            <div className="pdfField">
-                <strong>Ras:</strong>
-                <span>{journal.horse.breed}</span>
-            </div>
-
-            <h3>Ägare</h3>
-
-            <div className="pdfField">
-                <strong>Namn:</strong>
-                <span>{journal.owner.name}</span>
-            </div>
-
-            <div className="pdfField">
-                <strong>Adress:</strong>
-                <span>{journal.owner.address}</span>
-            </div>
-
-            <div className="pdfField">
-                <strong>Telefon:</strong>
-                <span>{journal.owner.phone}</span>
-            </div>
-
-            <div className="pdfField">
-                <strong>Mail:</strong>
-                <span>{journal.owner.mail}</span>
-            </div>
-
-            <h3>Besök</h3>
-
-            <div className="pdfField">
-                <strong>Datum:</strong>
-                <span>{journal.visitDate}</span>
-            </div>
-
-            <h3>Anamnes</h3>
-            <p>{journal.anamnes}</p>
-
-            <h3>Ockulär besiktning</h3>
-            <p>{journal.ocularInspection}</p>
-
-            <h3>FOSA</h3>
-            <p>{journal.fosa}</p>
-
-            <h3>Rörelseanalys</h3>
-            <p>{journal.movementAnalysis}</p>
-
-            <h3>Behandling</h3>
-            <p>{journal.treatment}</p>
-
-            <h3>Hemgångsråd</h3>
-            <p>{journal.homeAdvice}</p>
         </div>
 
     );
