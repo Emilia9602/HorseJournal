@@ -7,17 +7,13 @@ type TextAreaFieldProps = {
     rows?: number;
 };
 
-function TextAreaField({
-    label,
-    value,
-    onChange,
-    rows = 4
-}: TextAreaFieldProps) {
+function TextAreaField({ label, value, onChange, rows = 4 }: TextAreaFieldProps) {
     return (
         <Form.Group className="mb-3">
-            <Form.Label>{label}</Form.Label>
+            <Form.Label className="formLabel">{label}</Form.Label>
 
             <Form.Control
+                className="formInput"
                 as="textarea"
                 rows={rows}
                 value={value}

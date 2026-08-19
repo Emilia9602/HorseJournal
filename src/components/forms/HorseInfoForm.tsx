@@ -21,10 +21,10 @@ type HorseInfoFormProps = {
 function HorseInfoForm({ journal, updateField, updateDate }: HorseInfoFormProps) {
     return (
         <>
-            <Card className="mb-4">
-                <Card.Header>Häst</Card.Header>
+            <Card className="mb-4 formCard">
+                <Card.Header className="formHeader">Häst</Card.Header>
 
-                <Card.Body>
+                <Card.Body className="formBody">
                     <Row>
 
                         <Col md={6}>
@@ -53,9 +53,10 @@ function HorseInfoForm({ journal, updateField, updateDate }: HorseInfoFormProps)
 
                         <Col md={4}>
                             <Form.Group className="mb-3">
-                                <Form.Label>Kön</Form.Label>
+                                <Form.Label className="formLabel">Kön</Form.Label>
 
                                 <Form.Select
+                                    className="formInput"
                                     name="gender"
                                     value={journal.horse.gender}
                                     onChange={(e) => updateField("horse", "gender", e.target.value)}
@@ -74,11 +75,11 @@ function HorseInfoForm({ journal, updateField, updateDate }: HorseInfoFormProps)
                 </Card.Body>
             </Card>
 
-            <Card className="mb-4">
+            <Card className="mb-4 formCard">
 
-                <Card.Header>Ägare</Card.Header>
+                <Card.Header className="formHeader">Ägare</Card.Header>
 
-                <Card.Body>
+                <Card.Body className="formBody">
 
                     <InputField
                         label="Namn"
@@ -111,17 +112,18 @@ function HorseInfoForm({ journal, updateField, updateDate }: HorseInfoFormProps)
 
             </Card>
 
-            <Card className="mb-4">
+            <Card className="mb-4 formCard">
 
-                <Card.Header>Besök</Card.Header>
+                <Card.Header className="formHeader">Besök</Card.Header>
 
-                <Card.Body>
+                <Card.Body className="formBody">
 
                     <Form.Group>
 
-                        <Form.Label>Datum för besök</Form.Label>
+                        <Form.Label className="formLabel">Datum för besök</Form.Label>
 
                         <Form.Control
+                            className="formInput"
                             type="date"
                             name="visitDate"
                             value={journal.visitDate}

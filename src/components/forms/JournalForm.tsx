@@ -7,6 +7,7 @@ import useJournal from "../../hooks/useJournal";
 import usePDF from "../../hooks/usePDF";
 
 //Lägg in snyggare än alerts
+//Laddning visa?
 //LocalStorage? Ej ladda om ifall man går ut, så att det sparas
 //Nödvändigt med både spara PDF och skicka PDF?
 //Kolla netlify och resend
@@ -54,9 +55,9 @@ function JournalForm() {
     };
 
     return (
-        <Container className="py-4">
+        <Container className="py-5">
 
-            <h1 className="mb-4">Journal</h1>
+            <h1 className="mb-4 journalTitle">Journal</h1>
 
             <Form onSubmit={handleSubmit}>
                 <HorseInfoForm
@@ -72,13 +73,17 @@ function JournalForm() {
                     journal={journal}
                     updateTextArea={updateTextArea} />
 
-                <Button type="submit" className="me-2">
+                <Button
+                    type="submit"
+                    variant="none"
+                    className="me-3 journalBtnSend">
                     Skicka Journal
                 </Button>
 
-                <Button variant="secondary"
+                <Button
+                    variant="none"
                     onClick={downloadPDF}
-                    className="ms-2">
+                    className="ms-2 journalBtnDownload">
                     Ladda ner PDF
                 </Button>
 

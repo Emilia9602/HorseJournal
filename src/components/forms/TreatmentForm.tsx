@@ -14,11 +14,11 @@ const areaFields: AreaField[] = [
 
 function TreatmentForm({ journal, updateTextArea }: TreatmentFormProps) {
     return (
-        <Card className="mb-4">
+        <Card className="mb-4 formCard">
 
-            <Card.Header>Behandling</Card.Header>
+            <Card.Header className="formHeader">Behandling</Card.Header>
 
-            <Card.Body>
+            <Card.Body className="formBody">
                 {areaFields.map(({ key, label, rows }) => (
                     <TextAreaField
                         key={key}

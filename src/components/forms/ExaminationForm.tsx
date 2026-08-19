@@ -16,11 +16,11 @@ const areaFields: AreaField[] = [
 
 function ExaminationForm({ journal, updateTextArea }: ExaminationFormProps) {
     return (
-        <Card className="mb-4">
+        <Card className="mb-4 formCard">
 
-            <Card.Header>Undersökning</Card.Header>
+            <Card.Header className="formHeader">Undersökning</Card.Header>
 
-            <Card.Body>
+            <Card.Body className="formBody">
                 {areaFields.map(({ key, label, rows }) => (
                     <TextAreaField
                         key={key}

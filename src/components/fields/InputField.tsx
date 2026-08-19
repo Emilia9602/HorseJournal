@@ -7,17 +7,13 @@ type InputFieldProps = {
     type?: string;
 };
 
-function InputField({
-    label,
-    value,
-    onChange,
-    type = "text",
-}: InputFieldProps) {
+function InputField({ label, value, onChange, type = "text", }: InputFieldProps) {
     return (
         <Form.Group className="mb-3">
-            <Form.Label>{label}</Form.Label>
+            <Form.Label className="formLabel">{label}</Form.Label>
 
             <Form.Control
+                className="formInput"
                 type={type}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}

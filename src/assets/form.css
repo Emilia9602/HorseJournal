@@ -1,0 +1,53 @@
+.form-control {
+    font-family: "Arial", sans-serif;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.formInput {
+    border: 2px solid #dbc499;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.formInput:focus {
+    border-color: #bfa46a;
+    box-shadow: 0 0 0 3px rgba(219, 196, 153, 0.3);
+    outline: none;
+}
+
+.formLabel {
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #6b5b3e;
+}
+
+.formCard {
+    border: 2px solid #dbc499;
+    border-radius: 12px;
+    background: #fffaf3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.formHeader {
+    background: linear-gradient(90deg,
+            #f5ebd8,
+            #dbc499);
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #4a3b1d;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.formBody {
+    padding: 20px;
+}
