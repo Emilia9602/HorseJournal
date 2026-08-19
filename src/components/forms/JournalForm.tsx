@@ -9,7 +9,12 @@ import usePDF from "../../hooks/usePDF";
 //Lägg in snyggare än alerts
 //LocalStorage? Ej ladda om ifall man går ut, så att det sparas
 //Nödvändigt med både spara PDF och skicka PDF?
-//Sortera komponenter till mappar
+//Kolla netlify och resend
+//Sätta begräsning till större skärm?
+//Kolla hur deploya till netlify för varje kund själv?
+//Ovan - sätt upp en deploy länk
+//Kolla så den skriver ut PDF snyggt
+//Skriv en snygg read me som är enkel för användare
 //Städa till sist
 
 function JournalForm() {
