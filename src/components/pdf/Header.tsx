@@ -2,11 +2,11 @@ function Header() {
     return (
         <div className="pdfHeader">
             <div>
-                Goldie Ranch | Behandlingsjournal
+                Goldie Ranch
             </div>
 
             <div>
-                Ellinor Equiteraput
+                Equiterapeut Ellinor
             </div>
         </div>
     );

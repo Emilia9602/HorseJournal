@@ -2,7 +2,7 @@ import html2pdf from "html2pdf.js";
 
 const usePDF = () => {
     const opt = {
-        margin: 5,
+        margin: 10,
         filename: "journal.pdf",
         image: { type: "jpeg" as const, quality: 0.98 },
         html2canvas: { scale: 2 },

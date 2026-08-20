@@ -59,6 +59,14 @@ function PageOne({ journal }: PageOneProps) {
                 <strong>Datum:</strong>
                 <span>{journal.visitDate}</span>
             </div>
+
+            <div className="pdfDiv">
+                <h3>Anamnes</h3>
+                <p>{journal.anamnes}</p>
+
+                <h3>Ockulär besiktning</h3>
+                <p>{journal.ocularInspection}</p>
+            </div>
         </>
     )
 }

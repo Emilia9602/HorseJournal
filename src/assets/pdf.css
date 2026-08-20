@@ -17,18 +17,17 @@
     color: #1a1a1a;
     letter-spacing: 0.2px;
 
-    width: 752px;
+    width: 718px;
 }
 
 .pdfPage {
-    width: 752px;
-    min-height: 1083px;
+    width: 718px;
+    min-height: 1045px;
 
     padding: 50px;
     box-sizing: border-box;
 
     border: 4px solid #dbc499;
-    border-radius: 12px;
 
     background-image: url("/images/backgroundPDF.png");
     background-size: contain;
@@ -85,13 +84,27 @@
 #pdfJournal h1::after {
     content: "";
     display: block;
-    width: 120px;
+    width: 95px;
     height: 2px;
 
     background: linear-gradient(90deg, #f5ebd8, #dbc499);
 
     margin: 12px auto 0;
     border-radius: 2px;
+}
+
+.pdfDiv {
+    position: relative;
+}
+
+.pdfDiv::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 40px 0;
+
+    background: linear-gradient(90deg, #f5ebd8, #dbc499);
 }
 
 #pdfJournal h3 {

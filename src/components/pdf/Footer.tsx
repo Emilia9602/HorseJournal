@@ -8,11 +8,10 @@ function Footer({ page, total }: FooterProps) {
     return (
         <div className="pdfFooter">
             <span>Ellinor Andreasson</span>
-            <span>Kontakt: goldieranch@gmail.com | 0738-549555</span>
 
-            <span>
-                Sida {page} / {total}
-            </span>
+            <span>Kontakt: goldieranch96@gmail.com | 0738-549555</span>
+
+            <span>Sida {page} / {total}</span>
         </div>
     );
 }
