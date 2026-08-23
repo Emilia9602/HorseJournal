@@ -9,6 +9,8 @@ import usePDF from "../../hooks/usePDF";
 //Lägg in snyggare än alerts
 //Laddning visa?
 //LocalStorage? Ej ladda om ifall man går ut, så att det sparas
+//Fråga om hon verkligen vill skicka journalen, ifall hon råkar trycka
+//Error handling
 //Nödvändigt med både spara PDF och skicka PDF?
 //Kolla netlify och resend
 //Sätta begräsning till större skärm?

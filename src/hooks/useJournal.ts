@@ -1,34 +1,60 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Journal, JournalSection, TextArea } from "../types/Journal.types";
+
+const STORAGE_KEY = "journal-data";
 
 const useJournal = () => {
     const today = new Date().toISOString().split("T")[0];
 
-    const [journal, setJournal] = useState<Journal>({
-        horse: {
-            name: "",
-            birthDate: "",
-            gender: "",
-            breed: "",
-        },
+    const getSavedJournal = () => {
+        if (typeof window === "undefined") return null;
+        return localStorage.getItem(STORAGE_KEY);
+    };
 
-        owner: {
-            name: "",
-            phone: "",
-            address: "",
-            mail: "",
-        },
+    const parseSavedJournal = (data: string | null) => {
+        try {
+            return data ? JSON.parse(data) : null;
+        } catch {
+            return null;
+        }
+    };
 
-        visitDate: today,
+    const [journal, setJournal] = useState<Journal>(() => {
 
-        anamnes: "",
-        ocularInspection: "",
-        fosa: "",
-        movementAnalysis: "",
+        const savedJournal = parseSavedJournal(getSavedJournal());
 
-        treatment: "",
-        homeAdvice: "",
+        return (
+            savedJournal || {
+                horse: {
+                    name: "",
+                    birthDate: "",
+                    gender: "",
+                    breed: "",
+                },
+
+                owner: {
+                    name: "",
+                    phone: "",
+                    address: "",
+                    mail: "",
+                },
+
+                visitDate: today,
+
+                anamnes: "",
+                ocularInspection: "",
+                fosa: "",
+                movementAnalysis: "",
+
+                treatment: "",
+                homeAdvice: "",
+            }
+        );
     });
+
+    useEffect(() => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(journal));
+    }, [journal]);
 
     const updateField = (
         section: JournalSection,
