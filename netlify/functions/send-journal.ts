@@ -18,10 +18,10 @@ export const handler: Handler = async (event) => {
 
     try {
         await resend.emails.send({
-            from: "onboarding@resend.dev", //GoldieRanch?
+            from: "Goldie Ranch <onboarding@resend.dev>", //GoldieRanch?
             to: journal.owner.mail
-                ? [journal.owner.mail, "emiliaandreasson96@gmail.com",] //Ellans mail sen
-                : ["emiliaandreasson96@gmail.com"],
+                ? [journal.owner.mail, "ellis-an@hotmail.com",] //Ellans mail sen
+                : ["ellis-an@hotmail.com"],
 
             subject: `Journal ${journal.horse.name}`,
             html: `
