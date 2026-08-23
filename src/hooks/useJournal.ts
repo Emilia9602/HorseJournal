@@ -56,9 +56,9 @@ const useJournal = () => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(journal));
     }, [journal]);
 
-    const updateField = (
-        section: JournalSection,
-        field: keyof Journal[JournalSection],
+    const updateField = <T extends JournalSection>(
+        section: T,
+        field: keyof Journal[T],
         value: string
     ) => {
         setJournal((prev) => ({
