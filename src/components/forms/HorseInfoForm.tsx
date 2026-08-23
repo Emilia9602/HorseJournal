@@ -6,9 +6,9 @@ import TextAreaField from "../fields/TextAreaFields";
 type HorseInfoFormProps = {
     journal: Journal;
 
-    updateField: (
-        section: JournalSection,
-        field: keyof Journal["horse"] | keyof Journal["owner"],
+    updateField: <T extends JournalSection>(
+        section: T,
+        field: keyof Journal[T],
         value: string
     ) => void;
 
