@@ -7,22 +7,22 @@ import useJournal from "../../hooks/useJournal";
 import usePDF from "../../hooks/usePDF";
 
 //Lägg in snyggare än alerts
+//Snyggare comfirm i useJournal för ny journal
+//Fixa knapp för ny journal
+//Gör knappar responsiva
 //Laddning visa?
-//LocalStorage? Ej ladda om ifall man går ut, så att det sparas
 //Fråga om hon verkligen vill skicka journalen, ifall hon råkar trycka
 //Error handling
-//Nödvändigt med både spara PDF och skicka PDF?
 //Kolla netlify och resend
 //Sätta begräsning till större skärm?
 //Kolla hur deploya till netlify för varje kund själv?
 //Ovan - sätt upp en deploy länk
-//Kolla så den skriver ut PDF snyggt
 //Skriv en snygg read me som är enkel för användare
 //Städa till sist
 
 function JournalForm() {
 
-    const { journal, updateField, updateDate, updateTextArea } = useJournal();
+    const { journal, updateField, updateDate, updateTextArea, newJournal } = useJournal();
     const { generatePDFBase64, downloadPDF } = usePDF();
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -87,6 +87,13 @@ function JournalForm() {
                     onClick={downloadPDF}
                     className="ms-2 journalBtnDownload">
                     Ladda ner PDF
+                </Button>
+
+                <Button
+                    onClick={newJournal}
+                    variant="none"
+                    className="me-3 mt-4 journalBtnNew">
+                    Ny journal
                 </Button>
 
             </Form>

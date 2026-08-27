@@ -64,7 +64,8 @@
     letter-spacing: 1px;
 }
 
-.journalBtnDownload:hover {
+.journalBtnDownload:hover,
+.journalBtnNew:hover {
     background: #fffaf3;
     color: #4a3b1d;
     border-color: #dbc499;
@@ -72,14 +73,28 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 
-.journalBtnDownload:focus {
+.journalBtnDownload:focus,
+.journalBtnNew:focus {
     color: #4a3b1d;
     border-color: #dbc499;
     box-shadow: 0 0 0 0.2rem rgba(219, 196, 153, 0.4);
 }
 
-.journalBtnDownload:active {
+.journalBtnDownload:active,
+.journalBtnNew:active {
     color: #4a3b1d;
     border-color: #dbc499;
     box-shadow: none;
+}
+
+.journalBtnNew {
+    background: #fffaf3;
+    border: 2px solid #dbc499;
+    color: #6b5a2b;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
