@@ -22,6 +22,8 @@ import ConfirmModal from "../modals/ConfirmModal";
 
 function JournalForm() {
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const [modal, setModal] = useState({
         show: false,
         title: "",
@@ -61,6 +63,7 @@ function JournalForm() {
     };
 
     const handleSubmit = async () => {
+        setIsLoading(true);
 
         try {
             const pdfBase64 = await generatePDFBase64();
@@ -88,14 +91,23 @@ function JournalForm() {
             console.error(error);
             showInfo("Fel", "Kunde inte skicka journalen")
         }
+
+        setIsLoading(false);
     };
 
     return (
-        <Container className="py-5">
+        <Container className="py-5 position-relative">
 
             <h1 className="mb-4 journalTitle">Journal</h1>
 
-            <Form onSubmit={handleSubmit}>
+            {isLoading && (
+                <div className="loadingOverlay">
+                    <div className="spinner-border" />
+                </div>
+            )}
+
+            <Form onSubmit={handleSubmit} className={isLoading ? "formLoading" : ""}>
+
                 <HorseInfoForm
                     journal={journal}
                     updateField={updateField}
