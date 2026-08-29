@@ -19,7 +19,8 @@
     border-radius: 2px;
 }
 
-.journalBtnSend {
+.journalBtnSend,
+.modal .journalBtnSend {
     background: linear-gradient(90deg, #f5ebd8, #dbc499);
     border: 2px solid #dbc499;
     color: #4a3b1d;
@@ -31,7 +32,8 @@
     letter-spacing: 1px;
 }
 
-.journalBtnSend:hover {
+.journalBtnSend:hover,
+.modal .journalBtnSend:hover {
     background: linear-gradient(90deg, #f5ebd8, #dbc499);
     color: #4a3b1d;
     border-color: #dbc499;
@@ -39,13 +41,15 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-.journalBtnSend:focus {
+.journalBtnSend:focus,
+.modal .journalBtnSend:focus {
     color: #4a3b1d;
     border-color: #dbc499;
     box-shadow: 0 0 0 0.2rem rgba(219, 196, 153, 0.4);
 }
 
-.journalBtnSend:active {
+.journalBtnSend:active,
+.modal .journalBtnSend:active {
     color: #4a3b1d;
     border-color: #dbc499;
     transform: translateY(0px);

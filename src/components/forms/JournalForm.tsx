@@ -26,11 +26,39 @@ function JournalForm() {
         show: false,
         title: "",
         message: "",
+        type: "confirm" as "confirm" | "info",
         onConfirm: () => { },
     });
 
     const { journal, updateField, updateDate, updateTextArea, newJournal } = useJournal();
     const { generatePDFBase64, downloadPDF } = usePDF();
+
+    const showConfirm = (
+        title: string,
+        message: string,
+        onConfirm: () => void
+    ) => {
+        setModal({
+            show: true,
+            title,
+            message,
+            type: "confirm",
+            onConfirm: () => {
+                onConfirm();
+                setModal(prev => ({ ...prev, show: false }));
+            }
+        })
+    };
+
+    const showInfo = (title: string, message: string) => {
+        setModal({
+            show: true,
+            title,
+            message,
+            type: "info",
+            onConfirm: () => { }
+        })
+    };
 
     const handleSubmit = async () => {
 
@@ -38,7 +66,7 @@ function JournalForm() {
             const pdfBase64 = await generatePDFBase64();
 
             if (!pdfBase64) {
-                alert("Kunde inte skapa PDF");
+                showInfo("Fel", "Kunde inte skapa PDF");
                 return;
             }
 
@@ -55,10 +83,10 @@ function JournalForm() {
 
             if (!res.ok) throw new Error("Kunde inte skicka journalen");
 
-            alert("Journal skickad med PDF");
+            showInfo("Journal skickad", "Journal skickad med PDF");
         } catch (error) {
             console.error(error);
-            alert("Något gick fel");
+            showInfo("Fel", "Kunde inte skicka journalen")
         }
     };
 
@@ -86,15 +114,11 @@ function JournalForm() {
                     variant="none"
                     className="me-3 journalBtnSend"
                     onClick={() =>
-                        setModal({
-                            show: true,
-                            title: "Skicka journal",
-                            message: "Vill du skicka journalen till kunden?",
-                            onConfirm: () => {
-                                handleSubmit();
-                                setModal(prev => ({ ...prev, show: false }));
-                            },
-                        })
+                        showConfirm(
+                            "Skicka journal",
+                            "Vill du skicka journalen till kunden?",
+                            handleSubmit
+                        )
                     }>
                     Skicka Journal
                 </Button>
@@ -104,15 +128,11 @@ function JournalForm() {
                     variant="none"
                     className="ms-2 journalBtnDownload"
                     onClick={() =>
-                        setModal({
-                            show: true,
-                            title: "Ladda ner PDF",
-                            message: "Vill du ladda ner journalen som PDF?",
-                            onConfirm: () => {
-                                downloadPDF();
-                                setModal(prev => ({ ...prev, show: false }));
-                            },
-                        })
+                        showConfirm(
+                            "Ladda ner PDF",
+                            "Vill du ladda ner journalen som PDF?",
+                            downloadPDF
+                        )
                     }>
                     Ladda ner PDF
                 </Button>
@@ -121,15 +141,11 @@ function JournalForm() {
                     variant="none"
                     className="me-3 mt-4 journalBtnNew"
                     onClick={() =>
-                        setModal({
-                            show: true,
-                            title: "Ny journal",
-                            message: "Vill du tömma och skapa en ny journal?",
-                            onConfirm: () => {
-                                newJournal();
-                                setModal(prev => ({ ...prev, show: false }));
-                            },
-                        })
+                        showConfirm(
+                            "Ny journal",
+                            "Vill du tömma och skapa en ny journal?",
+                            newJournal
+                        )
                     }>
                     Ny journal
                 </Button>
@@ -144,6 +160,7 @@ function JournalForm() {
                 show={modal.show}
                 title={modal.title}
                 message={modal.message}
+                type={modal.type}
                 onCancel={() => setModal(prev => ({ ...prev, show: false }))}
                 onConfirm={modal.onConfirm}
             />

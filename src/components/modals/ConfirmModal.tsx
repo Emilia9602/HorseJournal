@@ -1,15 +1,18 @@
 import { Button, Modal } from "react-bootstrap";
 
+type ModalType = "confirm" | "info";
+
 type ConfirmModalProps = {
     show: boolean;
     title: string;
     message: string;
-    onConfirm: () => void;
+    type: ModalType;
+    onConfirm?: () => void;
     onCancel: () => void;
 };
 
 function ConfirmModal({
-    show, title, message, onConfirm, onCancel,
+    show, title, message, type, onConfirm, onCancel,
 }: ConfirmModalProps) {
     return (
         <Modal show={show} onHide={onCancel} centered>
@@ -22,17 +25,27 @@ function ConfirmModal({
             </Modal.Body>
 
             <Modal.Footer>
-                <Button
-                    className="journalBtnSend"
-                    onClick={onCancel}>
-                    Avbryt
-                </Button>
+                {type === "confirm" ? (
+                    <>
+                        <Button
+                            className="journalBtnSend"
+                            onClick={onCancel}>
+                            Avbryt
+                        </Button>
 
-                <Button
-                    className="journalBtnSend"
-                    onClick={onConfirm}>
-                    Bekräfta
-                </Button>
+                        <Button
+                            className="journalBtnSend"
+                            onClick={onConfirm}>
+                            Bekräfta
+                        </Button>
+                    </>
+                ) : (
+                    <Button
+                        className="journalBtnSend"
+                        onClick={onCancel}>
+                        OK
+                    </Button>
+                )}
             </Modal.Footer>
         </Modal>
     )
