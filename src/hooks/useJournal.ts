@@ -70,9 +70,6 @@ const useJournal = () => {
         });
     };
     const newJournal = () => {
-        const confirm = window.confirm("Gör en ny journal? Du förlorar allt du skrivit");
-
-        if (!confirm) return;
 
         localStorage.removeItem(STORAGE_KEY);
         setJournal(defaultJournal);

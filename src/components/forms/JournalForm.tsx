@@ -5,13 +5,13 @@ import TreatmentForm from "./TreatmentForm";
 import JournalPDF from "../pdf/JournalPDF";
 import useJournal from "../../hooks/useJournal";
 import usePDF from "../../hooks/usePDF";
+import { useState } from "react";
+import ConfirmModal from "../modals/ConfirmModal";
 
 //Lägg in snyggare än alerts
-//Snyggare comfirm i useJournal för ny journal
-//Fixa knapp för ny journal
 //Gör knappar responsiva
 //Laddning visa?
-//Fråga om hon verkligen vill skicka journalen, ifall hon råkar trycka
+//Gör mailet lite snyggare
 //Error handling
 //Kolla netlify och resend
 //Sätta begräsning till större skärm?
@@ -22,11 +22,17 @@ import usePDF from "../../hooks/usePDF";
 
 function JournalForm() {
 
+    const [modal, setModal] = useState({
+        show: false,
+        title: "",
+        message: "",
+        onConfirm: () => { },
+    });
+
     const { journal, updateField, updateDate, updateTextArea, newJournal } = useJournal();
     const { generatePDFBase64, downloadPDF } = usePDF();
 
-    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
 
         try {
             const pdfBase64 = await generatePDFBase64();
@@ -76,23 +82,55 @@ function JournalForm() {
                     updateTextArea={updateTextArea} />
 
                 <Button
-                    type="submit"
+                    type="button"
                     variant="none"
-                    className="me-3 journalBtnSend">
+                    className="me-3 journalBtnSend"
+                    onClick={() =>
+                        setModal({
+                            show: true,
+                            title: "Skicka journal",
+                            message: "Vill du skicka journalen till kunden?",
+                            onConfirm: () => {
+                                handleSubmit();
+                                setModal(prev => ({ ...prev, show: false }));
+                            },
+                        })
+                    }>
                     Skicka Journal
                 </Button>
 
                 <Button
+                    type="button"
                     variant="none"
-                    onClick={downloadPDF}
-                    className="ms-2 journalBtnDownload">
+                    className="ms-2 journalBtnDownload"
+                    onClick={() =>
+                        setModal({
+                            show: true,
+                            title: "Ladda ner PDF",
+                            message: "Vill du ladda ner journalen som PDF?",
+                            onConfirm: () => {
+                                downloadPDF();
+                                setModal(prev => ({ ...prev, show: false }));
+                            },
+                        })
+                    }>
                     Ladda ner PDF
                 </Button>
 
                 <Button
-                    onClick={newJournal}
                     variant="none"
-                    className="me-3 mt-4 journalBtnNew">
+                    className="me-3 mt-4 journalBtnNew"
+                    onClick={() =>
+                        setModal({
+                            show: true,
+                            title: "Ny journal",
+                            message: "Vill du tömma och skapa en ny journal?",
+                            onConfirm: () => {
+                                newJournal();
+                                setModal(prev => ({ ...prev, show: false }));
+                            },
+                        })
+                    }>
                     Ny journal
                 </Button>
 
@@ -101,6 +139,14 @@ function JournalForm() {
             <div className="pdfContainer">
                 <JournalPDF journal={journal} />
             </div>
+
+            <ConfirmModal
+                show={modal.show}
+                title={modal.title}
+                message={modal.message}
+                onCancel={() => setModal(prev => ({ ...prev, show: false }))}
+                onConfirm={modal.onConfirm}
+            />
         </Container>
     )
 
