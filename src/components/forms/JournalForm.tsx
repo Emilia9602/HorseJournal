@@ -8,11 +8,8 @@ import usePDF from "../../hooks/usePDF";
 import { useState } from "react";
 import ConfirmModal from "../modals/ConfirmModal";
 
-//Gör knappar responsiva
-//Gör mailet lite snyggare
 //Typecoverage och lint
 //Kolla netlify och resend
-//Sätta begräsning till större skärm?
 //Kolla hur deploya till netlify för varje kund själv?
 //Ovan - sätt upp en deploy länk
 //Skriv en snygg read me som är enkel för användare
@@ -95,7 +92,7 @@ function JournalForm() {
     };
 
     return (
-        <Container className="py-5 position-relative">
+        <Container className="py-5 position-relative journalContainer">
 
             <h1 className="mb-4 journalTitle">Journal</h1>
 
@@ -120,46 +117,48 @@ function JournalForm() {
                     journal={journal}
                     updateTextArea={updateTextArea} />
 
-                <Button
-                    type="button"
-                    variant="none"
-                    className="me-3 journalBtnSend"
-                    onClick={() =>
-                        showConfirm(
-                            "Skicka journal",
-                            "Vill du skicka journalen till kunden?",
-                            handleSubmit
-                        )
-                    }>
-                    Skicka Journal
-                </Button>
+                <div className="journalBtnGroup">
+                    <Button
+                        type="button"
+                        variant="none"
+                        className="journalBtnSend"
+                        onClick={() =>
+                            showConfirm(
+                                "Skicka journal",
+                                "Vill du skicka journalen till kunden?",
+                                handleSubmit
+                            )
+                        }>
+                        Skicka Journal
+                    </Button>
 
-                <Button
-                    type="button"
-                    variant="none"
-                    className="ms-2 journalBtnDownload"
-                    onClick={() =>
-                        showConfirm(
-                            "Ladda ner PDF",
-                            "Vill du ladda ner journalen som PDF?",
-                            downloadPDF
-                        )
-                    }>
-                    Ladda ner PDF
-                </Button>
+                    <Button
+                        type="button"
+                        variant="none"
+                        className="journalBtnDownload"
+                        onClick={() =>
+                            showConfirm(
+                                "Ladda ner PDF",
+                                "Vill du ladda ner journalen som PDF?",
+                                downloadPDF
+                            )
+                        }>
+                        Ladda ner PDF
+                    </Button>
 
-                <Button
-                    variant="none"
-                    className="me-3 mt-4 journalBtnNew"
-                    onClick={() =>
-                        showConfirm(
-                            "Ny journal",
-                            "Vill du tömma och skapa en ny journal?",
-                            newJournal
-                        )
-                    }>
-                    Ny journal
-                </Button>
+                    <Button
+                        variant="none"
+                        className="journalBtnNew"
+                        onClick={() =>
+                            showConfirm(
+                                "Ny journal",
+                                "Vill du tömma och skapa en ny journal?",
+                                newJournal
+                            )
+                        }>
+                        Ny journal
+                    </Button>
+                </div>
 
             </Form>
 
