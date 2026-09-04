@@ -37,10 +37,10 @@ export const handler: Handler = async (event) => {
                                     
                                     <!--
                                     <img 
-                                        src="/images/logo.png" 
+                                        src="https://goldieranchjournal.netlify.app/images/logo.png" 
                                         alt="Bild av Goldie Ranch logga"
                                         width="120"
-                                        style="margin-bottom:15px;"
+                                        style="display:block; margin:0 auto 15px auto;"
                                     />
                                     -->
 
@@ -76,12 +76,12 @@ export const handler: Handler = async (event) => {
 
                                                 <table width="100%" cellpadding="0" cellspacing="0">
                                                     <tr>
-                                                        <td style="padding:4px 0; color:#6b5a2b;">Häst:</td>
-                                                        <td style="padding:4px 0;"><strong>${journal.horse.name}</strong></td>
+                                                        <td style="padding:4px 0; color:#6b5a2b; white-space:nowrap;">Häst:</td>
+                                                        <td style="padding:4px 0; padding-left:10px;"><strong>${journal.horse.name}</strong></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding:4px 0; color:#6b5a2b;">Datum:</td>
-                                                        <td style="padding:4px 0;"><strong>${journal.visitDate}</strong></td>
+                                                        <td style="padding:4px 0; color:#6b5a2b; white-space:nowrap;">Datum:</td>
+                                                        <td style="padding:4px 0; padding-left:10px;"><strong>${journal.visitDate}</strong></td>
                                                     </tr>
                                             </table>
 
@@ -106,7 +106,8 @@ export const handler: Handler = async (event) => {
 
                             <tr>
                                 <td style="padding:20px; font-size:12px; color:#6b5a2b; border-top:1px solid #eee; text-align:center;">
-                                Kontakt: goldieranch@gmail.com | 0738-549555
+                                    <p style="margin:0 0 6px;">Kontakt: goldieranch@gmail.com</p>
+                                    <p style="margin:0;">0738-549555</p>
                                 </td>
                             </tr>
 

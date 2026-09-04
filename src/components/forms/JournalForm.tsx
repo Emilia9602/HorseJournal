@@ -16,6 +16,7 @@ import ConfirmModal from "../modals/ConfirmModal";
 //Kolla hur deploya till netlify för varje kund själv?
 //Ovan - sätt upp en deploy länk
 //Skriv en snygg read me som är enkel för användare
+//Avkommentera bilden och testa i deploy
 //Städa till sist
 
 function JournalForm() {
