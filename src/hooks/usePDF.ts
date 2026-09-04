@@ -1,5 +1,7 @@
 import html2pdf from "html2pdf.js";
 
+type PdfBlob = Blob;
+
 const usePDF = () => {
     const opt = {
         margin: 10,
@@ -18,7 +20,7 @@ const usePDF = () => {
 
         if (!divPdf) return null;
 
-        const pdf = await html2pdf().set(opt).from(divPdf).outputPdf("blob");
+        const pdf: PdfBlob = await html2pdf().set(opt).from(divPdf).outputPdf("blob");
 
         return new Promise((resolve) => {
             const reader = new FileReader();

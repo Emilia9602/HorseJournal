@@ -8,7 +8,6 @@ import usePDF from "../../hooks/usePDF";
 import { useState } from "react";
 import ConfirmModal from "../modals/ConfirmModal";
 
-//Typecoverage och lint
 //Kolla netlify och resend
 //Kolla hur deploya till netlify för varje kund själv?
 //Ovan - sätt upp en deploy länk
