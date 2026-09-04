@@ -8,11 +8,9 @@ import usePDF from "../../hooks/usePDF";
 import { useState } from "react";
 import ConfirmModal from "../modals/ConfirmModal";
 
-//Lägg in snyggare än alerts
 //Gör knappar responsiva
-//Laddning visa?
 //Gör mailet lite snyggare
-//Error handling
+//Typecoverage och lint
 //Kolla netlify och resend
 //Sätta begräsning till större skärm?
 //Kolla hur deploya till netlify för varje kund själv?
