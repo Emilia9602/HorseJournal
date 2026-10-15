@@ -10,7 +10,7 @@ type ExaminationFormProps = {
 const areaFields: AreaField[] = [
     { key: "anamnes", label: "Anamnes" },
     { key: "ocularInspection", label: "Ockulär besiktning" },
-    { key: "fosa", label: "FOSA" },
+    { key: "fosa", label: "FOSA/palpation" },
     { key: "movementAnalysis", label: "Rörelseanalys" },
 ];
 
