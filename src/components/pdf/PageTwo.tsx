@@ -7,7 +7,7 @@ type PageTwoProps = {
 function PageTwo({ journal }: PageTwoProps) {
     return (
         <>
-            <h3>FOSA/palpation</h3>
+            <h3>Palpation</h3>
             <p>{journal.fosa}</p>
 
             <h3>Rörelseanalys</h3>

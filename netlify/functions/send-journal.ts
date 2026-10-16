@@ -94,6 +94,9 @@ export const handler: Handler = async (event) => {
                                 <p style="margin:0 0 20px;">
                                     Du hittar hela journalen som bifogad PDF.
                                 </p>
+                                <p style="margin:0 0 20px;">
+                                    Tveka inte att höra av dig om du har några frågor!
+                                </p>
 
                                 <div style="margin:0;">
                                     <p style="margin:0;">Med Vänlig Hälsning,</p>
